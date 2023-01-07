@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import "./Login.css"
 import { useState } from 'react'
 import { Link } from "react-router-dom"
-import { auth, loginWithEmailAndPassword } from "../../firebase"
+import { auth} from "../../firebase"
+import { loginWithEmailAndPassword } from "../../utils/userAuth"
 
 function Login() {
 	const [email, setEmail] = useState("")

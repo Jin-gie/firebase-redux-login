@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { registerWithEmailAndPassword } from "../../firebase"
+import { registerWithEmailAndPassword } from "../../utils/userAuth"
 import { Link } from "react-router-dom"
 import "./Register.css"
 
