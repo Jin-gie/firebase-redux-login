@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
 import { registerWithEmailAndPassword } from "../../utils/userAuth"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
 import "./Register.css"
 
 function Register() {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [name, setName] = useState("")
+	const navigate = useNavigate()
+	const user = useSelector((state) => state.user)
+
+	if (user.user) {
+		navigate("/dashboard")
+	}
 
 	const register = () => {
 		if (!name) alert("Please enter name")
