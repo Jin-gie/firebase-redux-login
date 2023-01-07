@@ -7,18 +7,22 @@ import Register from "./pages/Register/Register"
 import ProtectedRoutes from './utils/ProtectedRoutes';
 import { auth } from './firebase';
 import { useDispatch } from 'react-redux';
-import { login } from './redux/userSlice';
+import { login, logout } from './redux/userSlice';
 
 function App() {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged((userAuth) => {
-			dispatch(login({
-				displayName: userAuth.displayName,
-				email: userAuth.email,
-				photoUrl: userAuth.photoURL
-			}))
+			if (userAuth) {
+				dispatch(login({
+					displayName: userAuth.displayName,
+					email: userAuth.email,
+					photoUrl: userAuth.photoURL
+				}))
+			} else {
+				dispatch(logout())
+			}
 		})
 		return unsubscribe
 	}, [dispatch])
